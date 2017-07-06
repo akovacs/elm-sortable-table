@@ -187,6 +187,7 @@ type alias Customizations data msg =
   , tfoot : Maybe (HtmlDetails msg)
   , tbodyAttrs : List (Attribute msg)
   , rowAttrs : data -> List (Attribute msg)
+  , rowFilter : Int -> data -> Bool
   }
 
 
@@ -211,6 +212,7 @@ defaultCustomizations =
   , tfoot = Nothing
   , tbodyAttrs = []
   , rowAttrs = simpleRowAttrs
+  , rowFilter = \_ _ -> True
   }
 
 
@@ -445,9 +447,17 @@ view (Config { toId, toMsg, columns, customizations }) state data =
     thead =
       Html.thead theadDetails.attributes theadDetails.children
 
+    filterSortedData ( sortIndex, data ) =
+      if customizations.rowFilter sortIndex data then
+        Just data
+      else
+        Nothing
+
     tbody =
       Keyed.node "tbody" customizations.tbodyAttrs <|
-        List.map (viewRow toId columns customizations.rowAttrs) sortedData
+         List.map (viewRow toId columns customizations.rowAttrs) <|
+         List.filterMap filterSortedData <|
+         List.indexedMap (\i -> (,) i) sortedData
 
     withFoot =
       case customizations.tfoot of
