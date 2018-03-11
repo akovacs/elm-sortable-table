@@ -60,15 +60,15 @@ is not that crazy.
 
 ## Custom Columns
 
-@docs Column, customColumn, veryCustomColumn,
-Sorter, unsortable, increasingBy, decreasingBy,
-increasingOrDecreasingBy, decreasingOrIncreasingBy
+@docs Column, customColumn, veryCustomColumn
+@docs Sorter, unsortable, increasingBy, decreasingBy
+@docs increasingOrDecreasingBy, decreasingOrIncreasingBy
 
 
 ## Custom Tables
 
-@docs Config, customConfig, Customizations, HtmlDetails, Status,
-defaultCustomizations
+@docs Config, customConfig, Customizations, HtmlDetails, Status
+@docs defaultCustomizations
 
 -}
 
