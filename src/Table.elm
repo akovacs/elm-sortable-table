@@ -72,12 +72,13 @@ is not that crazy.
 
 -}
 
-import Html exposing (Attribute, Html)
-import Html.Attributes as Attr
-import Html.Events as E
-import Html.Keyed as Keyed
-import Html.Lazy exposing (lazy2, lazy3)
+import Html.Styled exposing (Attribute, Html, toUnstyled)
+import Html.Styled.Attributes as Attr
+import Html.Styled.Events as E
+import Html.Styled.Keyed as Keyed
+import Html.Styled.Lazy exposing (lazy2, lazy3)
 import Json.Decode as Json
+import VirtualDom
 
 
 -- STATE
@@ -249,10 +250,10 @@ simpleTheadHelp ( name, status, onClick ) =
         content =
             case status of
                 Unsortable ->
-                    [ Html.text name ]
+                    [ Html.Styled.text name ]
 
                 Sortable selected ->
-                    [ Html.text name
+                    [ Html.Styled.text name
                     , if selected then
                         darkGrey "↓"
                       else
@@ -260,12 +261,12 @@ simpleTheadHelp ( name, status, onClick ) =
                     ]
 
                 Reversible Nothing ->
-                    [ Html.text name
+                    [ Html.Styled.text name
                     , lightGrey "↕"
                     ]
 
                 Reversible (Just isReversed) ->
-                    [ Html.text name
+                    [ Html.Styled.text name
                     , darkGrey
                         (if isReversed then
                             "↑"
@@ -274,17 +275,17 @@ simpleTheadHelp ( name, status, onClick ) =
                         )
                     ]
     in
-    Html.th [ onClick ] content
+    Html.Styled.th [ onClick ] content
 
 
 darkGrey : String -> Html msg
 darkGrey symbol =
-    Html.span [ Attr.style [ ( "color", "#555" ) ] ] [ Html.text (" " ++ symbol) ]
+    Html.Styled.span [ Attr.style [ ( "color", "#555" ) ] ] [ Html.Styled.text (" " ++ symbol) ]
 
 
 lightGrey : String -> Html msg
 lightGrey symbol =
-    Html.span [ Attr.style [ ( "color", "#ccc" ) ] ] [ Html.text (" " ++ symbol) ]
+    Html.Styled.span [ Attr.style [ ( "color", "#ccc" ) ] ] [ Html.Styled.text (" " ++ symbol) ]
 
 
 simpleRowAttrs : data -> List (Attribute msg)
@@ -363,7 +364,7 @@ floatColumn name toFloat =
 
 textDetails : String -> HtmlDetails msg
 textDetails str =
-    HtmlDetails [] [ Html.text str ]
+    HtmlDetails [] [ Html.Styled.text str ]
 
 
 {-| Perhaps the basic columns are not quite what you want. Maybe you want to
@@ -465,7 +466,7 @@ view (Config { toId, toMsg, columns, customizations }) state data =
                     identity
 
                 Just { attributes, children } ->
-                    (::) <| Html.caption attributes children
+                    (::) <| Html.Styled.caption attributes children
 
         colgroup =
             case customizations.colgroup of
@@ -473,13 +474,13 @@ view (Config { toId, toMsg, columns, customizations }) state data =
                     identity
 
                 Just { attributes, children } ->
-                    (::) <| Html.colgroup attributes children
+                    (::) <| Html.Styled.colgroup attributes children
 
         theadDetails =
             customizations.thead (List.map (toHeaderInfo state toMsg) columns)
 
         thead =
-            Html.thead theadDetails.attributes theadDetails.children
+            Html.Styled.thead theadDetails.attributes theadDetails.children
 
         filterSortedData ( sortIndex, data ) =
             if customizations.rowFilter sortIndex data then
@@ -499,9 +500,9 @@ view (Config { toId, toMsg, columns, customizations }) state data =
                     tbody :: []
 
                 Just { attributes, children } ->
-                    Html.tfoot attributes children :: tbody :: []
+                    Html.Styled.tfoot attributes children :: tbody :: []
     in
-    Html.table customizations.tableAttrs
+    Html.Styled.table customizations.tableAttrs
         (caption <| colgroup <| thead :: withFoot)
 
 
@@ -544,9 +545,9 @@ viewRow toId columns toRowAttrs data =
     )
 
 
-viewRowHelp : List (ColumnData data msg) -> (data -> List (Attribute msg)) -> data -> Html msg
+viewRowHelp : List (ColumnData data msg) -> (data -> List (Attribute msg)) -> data -> VirtualDom.Node msg
 viewRowHelp columns toRowAttrs data =
-    Html.tr (toRowAttrs data) (List.map (viewCell data) columns)
+    Html.Styled.tr (toRowAttrs data) (List.map (viewCell data) columns) |> toUnstyled
 
 
 viewCell : data -> ColumnData data msg -> Html msg
@@ -555,7 +556,7 @@ viewCell data { viewData } =
         details =
             viewData data
     in
-    Html.td details.attributes details.children
+    Html.Styled.td details.attributes details.children
 
 
 
