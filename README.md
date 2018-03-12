@@ -4,13 +4,15 @@ Create sortable tables for data of any shape.
 
 This library also lets you customize `<caption>`, `<tbody>`, `<tr>`, etc. for your particular needs. So it is pretty easy to do whatever crazy CSS trickery is needed to get the exact table you want.
 
-This fork is a modification of [the original evancz/elm-sortable-table](https://github.com/evancz/elm-sortable-table) to be compatible with the [elm-css library](https://github.com/rtfeldman/elm-css). It imports Html elements and attributes from Html.Styled rather than Html, which permits applying styles from the Css module.
+This fork modifies [evancz/elm-sortable-table](https://github.com/evancz/elm-sortable-table) to be compatible with the [elm-css library](https://github.com/rtfeldman/elm-css). It imports Html elements and attributes from Html.Styled rather than Html, which permits applying styles from the Css module. Please see [colors.elm](https://github.com/akovacs/elm-sortable-table/blob/master/examples/3-colors.elm) for an [example](https://akovacs.github.io/elm-sortable-table/colors.html).
 
 
 ## Examples
 
-  1. [U.S. Presidents by Birth Place](https://evancz.github.io/elm-sortable-table/presidents.html) / [Code](https://github.com/evancz/elm-sortable-table/blob/master/examples/1-presidents.elm)
-  2. [Travel Planner for the Mission District in San Francisco](https://evancz.github.io/elm-sortable-table/travel.html) / [Code](https://github.com/evancz/elm-sortable-table/blob/master/examples/2-travel.elm)
+1. [U.S. Presidents by Birth Place](https://akovacs.github.io/elm-sortable-table/presidents.html) / [Code](https://github.com/akovacs/elm-sortable-table/blob/master/examples/1-presidents.elm)
+2. [Travel Planner for the Mission District in San Francisco](https://akovacs.github.io/elm-sortable-table/travel.html) / [Code](https://github.com/akovacs/elm-sortable-table/blob/master/examples/2-travel.elm)
+3. [Color Names and Hexadecimal Codes](https://akovacs.github.io/elm-sortable-table/colors.html) / [Code](https://github.com/akovacs/elm-sortable-table/blob/master/examples/3-colors.elm)
+
 
 
 ## Usage Rules

@@ -1,7 +1,8 @@
 # Examples
 
-  1. [U.S. Presidents by Birth Place](https://evancz.github.io/elm-sortable-table/presidents.html)
-  2. [Travel Planner for the Mission District in San Francisco](https://evancz.github.io/elm-sortable-table/travel.html)
+  1. [U.S. Presidents by Birth Place](https://akovacs.github.io/elm-sortable-table/presidents.html)
+  2. [Travel Planner for the Mission District in San Francisco](https://akovacs.github.io/elm-sortable-table/travel.html)
+  3. [Color Names and Hexadecimal Codes](https://akovacs.github.io/elm-sortable-table/colors.html)
 
 
 ## Build Instructions
@@ -18,4 +19,10 @@ elm-github-install
 elm-reactor
 ```
 
-Then navigate to `1-presidents.elm` or `2-travel.elm` from [localhost:8000](http://localhost:8000/). When using `elm-reactor`, refreshing a page that ends with `.elm` will recompile the code in that file and show you the new result.
+Then navigate to `1-presidents.elm`, `2-travel.elm`, or `3-colors.elm` from [localhost:8000](http://localhost:8000/). When using `elm-reactor`, refreshing a page that ends with `.elm` will recompile the code in that file and show you the new result.
+
+To build a static HTML file, execute:
+
+```bash
+elm-make 3-colors.elm --output=colors.html
+```
