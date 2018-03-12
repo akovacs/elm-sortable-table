@@ -1,15 +1,15 @@
 module Main exposing (..)
 
-import Html exposing (Html, Attribute, div, h1, input, p, text)
-import Html.Attributes exposing (checked, style, type_)
-import Html.Events exposing (onClick)
-import Html.Lazy exposing (lazy)
+import Html.Styled exposing (Attribute, Html, div, h1, input, p, program, text, toUnstyled)
+import Html.Styled.Attributes exposing (checked, style, type_)
+import Html.Styled.Events exposing (onClick)
+import Html.Styled.Lazy exposing (lazy)
 import Table exposing (defaultCustomizations)
 import Time exposing (Time)
 
 
 main =
-    Html.program
+    program
         { init = init missionSights
         , update = update
         , view = view
@@ -75,9 +75,9 @@ toggle name sight =
 
 view : Model -> Html Msg
 view { sights, tableState } =
-    div []
+    Html.Styled.div []
         [ h1 [] [ text "Trip Planner" ]
-        , lazy viewSummary sights
+        , lazy (toUnstyled << viewSummary) sights
         , Table.view config tableState sights
         ]
 

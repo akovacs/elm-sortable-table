@@ -1,8 +1,8 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, h1, input, text)
-import Html.Attributes exposing (placeholder)
-import Html.Events exposing (onInput)
+import Html.Styled exposing (Html, div, h1, input, text, toUnstyled)
+import Html.Styled.Attributes exposing (placeholder)
+import Html.Styled.Events exposing (onInput)
 import Table
 
 
@@ -10,7 +10,7 @@ main =
     Html.program
         { init = init presidents
         , update = update
-        , view = view
+        , view = view >> toUnstyled
         , subscriptions = \_ -> Sub.none
         }
 

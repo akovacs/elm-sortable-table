@@ -4,6 +4,8 @@ Create sortable tables for data of any shape.
 
 This library also lets you customize `<caption>`, `<tbody>`, `<tr>`, etc. for your particular needs. So it is pretty easy to do whatever crazy CSS trickery is needed to get the exact table you want.
 
+This fork is a modification of [the original evancz/elm-sortable-table](https://github.com/evancz/elm-sortable-table) to be compatible with the [elm-css library](https://github.com/rtfeldman/elm-css). It imports Html elements and attributes from Html.Styled rather than Html, which permits applying styles from the Css module.
+
 
 ## Examples
 
